@@ -1,6 +1,6 @@
 Package: seqRdna
 Title: Tools for Calculating for rDNA in Muscle Sequencing Data
-Version: 0.99.4
+Version: 0.99.5
 Authors@R: c(
     person(
       given = "Daniel", 

@@ -1,6 +1,6 @@
-# seqRdna 0.99.4
+# seqRdna 0.99.5
 
-# seqRdna 0.99.4
+# seqRdna 0.99.5
 
 ## New features
 
