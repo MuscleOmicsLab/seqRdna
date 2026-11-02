@@ -1,4 +1,4 @@
 library(testthat)
-library(myoRDNA)
+library(seqRdna)
 
-test_check("myoRDNA")
+test_check("seqRdna")

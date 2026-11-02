@@ -1,5 +1,5 @@
-### myoRDNA
-`myoRDNA` is an R package developed by MuscleOmicsLab
+### seqRdna
+`seqRdna` is an R package developed by MuscleOmicsLab
 to facilitate the analysis of rDNA copy number and DNA
 methylation using high-throughput sequencing data.
 
@@ -10,22 +10,22 @@ between experimental conditions.
 
 ## Installation
 
-Install **myoRDNA** from Bioconductor using **BiocManager**:
+Install **seqRdna** from Bioconductor using **BiocManager**:
 
 ```
 if (!requireNamespace("BiocManager", quietly = TRUE)) {
     install.packages("BiocManager")
 }
 
-BiocManager::install("myoRDNA")
+BiocManager::install("seqRdna")
 
 # Load the package
-library(myoRDNA)
+library(seqRdna)
 ```
 
 ## Link to Useful Resources
 
-# Manuscript highlighting examples of myoRDNA
+# Manuscript highlighting examples of seqRdna
 ```
 Vaughan, D., Wood, N. and Seaborne, R.A., 2026. The ribosomal DNA landscape of 
 mammalian muscle during acute and chronic physiological stress. bioRxiv, 

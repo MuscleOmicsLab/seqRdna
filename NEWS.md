@@ -1,10 +1,10 @@
-# myoRDNA 0.99.0
+# seqRdna 0.99.4
 
-# myoRDNA 0.99.0
+# seqRdna 0.99.4
 
 ## New features
 
-- Initial release of myoRDNA.
+- Initial release of seqRdna.
 - Added functions to estimate relative and absolute
   ribosomal DNA (rDNA) copy number.
 - Added functions for calculating regional DNA

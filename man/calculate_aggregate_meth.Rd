@@ -39,7 +39,7 @@ samples, grouped by their respective conditions.
 file_path <- system.file(
   "extdata",
   "filtered_meth_raw_chr1_chrRDNAm_small.rds",
-  package = "myoRDNA",
+  package = "seqRdna",
   mustWork = TRUE
 )
 

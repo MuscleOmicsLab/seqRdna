@@ -1,6 +1,6 @@
-Package: myoRDNA
+Package: seqRdna
 Title: Tools for Calculating for rDNA in Muscle Sequencing Data
-Version: 0.99.3
+Version: 0.99.4
 Authors@R: c(
     person(
       given = "Daniel", 
@@ -25,8 +25,8 @@ Imports:
   glmmTMB
 License: MIT + file LICENSE
 Encoding: UTF-8
-URL: https://github.com/MuscleOmicsLab/myoRDNA
-BugReports: https://github.com/MuscleOmicsLab/myoRDNA/issues
+URL: https://github.com/MuscleOmicsLab/seqRdna
+BugReports: https://github.com/MuscleOmicsLab/seqRdna/issues
 Config/roxygen2/version: 8.1.1
 Suggests:
     BiocStyle,

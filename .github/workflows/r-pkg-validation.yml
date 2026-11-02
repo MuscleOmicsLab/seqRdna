@@ -19,7 +19,7 @@ jobs:
       packages: write
       deployments: write
     steps:
-      - name: Checkout myoRDNA
+      - name: Checkout seqRdna
         uses: actions/checkout@v4
 
       - name: Build validation report
@@ -33,7 +33,7 @@ jobs:
         uses: svenstaro/upload-release-action@v2
         with:
           file: ./validation_report.pdf
-          asset_name: myoRDNA-validation-report.pdf
+          asset_name: seqRdna-validation-report.pdf
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ github.ref }}
           overwrite: true

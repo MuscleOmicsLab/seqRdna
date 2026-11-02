@@ -1,5 +1,5 @@
 ---
-title: "Introduction to myoRDNA"
+title: "Introduction to seqRdna"
 author: "MuscleOmicsLab"
 output:
   BiocStyle::html_document:
@@ -7,7 +7,7 @@ output:
     toc_depth: 3
     number_sections: true
 vignette: >
-  %\VignetteIndexEntry{Introduction to myoRDNA}
+  %\VignetteIndexEntry{Introduction to seqRdna}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 ```
 
 ```{r library}
-library(myoRDNA)
+library(seqRdna)
 ```
 
 # Introduction
@@ -39,7 +39,7 @@ challenges for conventional sequencing and bioinformatics
 approaches, particularly when estimating copy number or
 analysing DNA methylation.
 
-`myoRDNA` is an R package developed by MuscleOmicsLab
+`seqRdna` is an R package developed by MuscleOmicsLab
 to facilitate the analysis of rDNA copy number and DNA
 methylation using high-throughput sequencing data.
 
@@ -50,7 +50,7 @@ between experimental conditions.
 
 # Package functionality
 
-`myoRDNA` provides tools for four principal analytical tasks:
+`seqRdna` provides tools for four principal analytical tasks:
 
 1. **rDNA data extraction and preprocessing:** Identifying
    rDNA-associated sequencing data, extracting genomic
@@ -73,21 +73,21 @@ including `methylKit` and `GenomicRanges`.
 
 # Installation
 
-The development version of `myoRDNA` is available from GitHub
-and can be installed using the `remotes` package.
+The development version of `seqRdna` is available from Bioconductor
+and can be installed using the `BiocManager` package.
 
 ```{r installation, eval=FALSE}
 if (!requireNamespace("BiocManager", quietly = TRUE)) {
     install.packages("BiocManager")
 }
 
-BiocManager::install("myoRDNA")
+BiocManager::install("seqRdna")
 ```
 
 Load the package using:
 
 ```{r load-package}
-library(myoRDNA)
+library(seqRdna)
 ```
 
 # Overview of the analytical workflow
@@ -102,14 +102,14 @@ paper by [Vaughan et al.](https://doi.org/10.64898/2026.08.13.744441)
 For DNA methylation analysis, methylated and unmethylated
 read counts can be imported into R using `methylKit`.
 The resulting objects provide the basis for downstream
-analyses implemented in `myoRDNA`. The exact preprocessing 
+analyses implemented in `seqRdna`. The exact preprocessing 
 requirements depend on the sequencing technology, reference 
 genome and experimental design.
 
-# Loading your data into myoRDNA
+# Loading your data into seqRdna
 
 This section demonstrates how to import and prepare DNA methylation
-data for analysis using `myoRDNA`.
+data for analysis using `seqRdna`.
 
 We use an example mouse whole-genome bisulfite sequencing (WGBS)
 dataset comprising ten samples from two experimental groups:
@@ -117,25 +117,25 @@ six old mice (OLD) and four young mice (YOUNG). For additional
 information about the original dataset and experimental methodology, 
 see the [original publication](https://doi.org/10.1016/j.isci.2025.112144). 
 In this document we make no conclusions about the data, it is simply 
-being used to demonstrate `myoRDNA` and the dataset has been reduced 
+being used to demonstrate `seqRdna` and the dataset has been reduced 
 as a result. 
 
 ## Step 1: Load the example methylation dataset
 
-The example data are distributed with `myoRDNA` in the
+The example data are distributed with `seqRdna` in the
 `inst/extdata` directory.
 
 We use `system.file()` to retrieve the location of the dataset
 within the installed package. This approach ensures that the
 example works regardless of where the package is installed.
 ```{r load-data, message = FALSE, warning = FALSE}
-library(myoRDNA)
+library(seqRdna)
 library(methylKit)
 
 file_path <- system.file(
   "extdata",
   "filtered_meth_raw_chr1_chrRDNAm_small.rds",
-  package = "myoRDNA",
+  package = "seqRdna",
   mustWork = TRUE
 )
 
@@ -172,7 +172,7 @@ treatment <- c(
 num_samples <- length(treatment)
 ```
 This is a necessary component required for interacting with `methylKit` and 
-this can be simply carried over for use in `myoRDNA`. The number of samples 
+this can be simply carried over for use in `seqRdna`. The number of samples 
 needs to be a numeric value and should be either the number of samples in the
 whole dataset or across two different conditions. We also define a named list 
 containing the sequencing accession numbers associated with each condition.
@@ -196,7 +196,7 @@ otherwise output will be `NULL`.
 ## Step 3: Construct a methylRawList object
 
 This step is only necessary for following along and using the `rds` data from 
-the `myoRDNA`, if the user is using these features directly interfacing with the
+the `seqRdna`, if the user is using these features directly interfacing with the
 `methylKit` object than this isn't needed.
 
 We construct a `methylRawList` object by combining the
@@ -337,7 +337,7 @@ of these repeats can vary between individuals and experimental conditions.
 Estimating rDNA copy number provides a means of investigating variation in rDNA 
 abundance across biological samples.
 
-`myoRDNA` provides two functions for estimating rDNA copy number:
+`seqRdna` provides two functions for estimating rDNA copy number:
 
 - `relative_rDNA_CN()`: Estimates relative rDNA copy number using 
   sequencing coverage.
@@ -351,7 +351,7 @@ These estimators have different sequencing requirements.
 | Whole-genome bisulfite sequencing (WGBS) | Yes | Yes |
 | Reduced-representation bisulfite sequencing (RRBS) | Yes | No |
 
-Absolute copy-number estimation is restricted to WGBS in `myoRDNA`, as it 
+Absolute copy-number estimation is restricted to WGBS in `seqRdna`, as it 
 requires a genome-wide coverage reference. RRBS enriches selected genomic 
 fragments, which makes its sequencing coverage unsuitable for directly 
 estimating absolute genomic copy number.
@@ -453,7 +453,7 @@ associated with mapping reads to repetitive rDNA sequences.
 Relative rDNA copy number provides a normalised measure of rDNA abundance that 
 can be used to compare samples processed using compatible sequencing protocols.
 Unlike absolute copy-number estimation, relative estimation is supported for 
-both WGBS and RRBS data in `myoRDNA`.
+both WGBS and RRBS data in `seqRdna`.
 
 The relative estimator is calculated using the ratio of summed rDNA coverage to 
 summed genomic reference coverage:
@@ -552,7 +552,7 @@ DNA methylation may vary across these regions. Consequently, analysing
 methylation across the entire rDNA repeat may obscure region-specific 
 variation.
 
-`myoRDNA` provides functions to partition rDNA methylation data into predefined 
+`seqRdna` provides functions to partition rDNA methylation data into predefined 
 genomic regions and calculate aggregate methylation metrics for individual 
 samples and experimental conditions.
 
@@ -675,7 +675,7 @@ where $N_R$ denotes the number of retained CpG positions in region $R$.
 
 This metric assigns equal weight to every retained CpG position, regardless of 
 its individual sequencing coverage. Currently there is no coverage weighted 
-calculation for the methylation proportion in `myoRDNA`, if the user needs such
+calculation for the methylation proportion in `seqRdna`, if the user needs such
 a metric this has to be inputted manually.
 
 ### Median methylation proportion
@@ -731,7 +731,7 @@ predicted by conventional binomial models. This phenomenon, known as
 inflated statistical significance if it is not appropriately considered.
 
 To accommodate different levels of variability,
-`myoRDNA` supports three statistical approaches:
+`seqRdna` supports three statistical approaches:
 
 1. Binomial logistic regression, implemented using `glm()`.
 2. Quasi-binomial logistic regression, implemented using `glm()`.
@@ -755,7 +755,7 @@ in their assumptions about the variance of methylation measurements.
 
 This form of regression follows the same methodology as outlined by `methylKit`
 and therefore, allows users to use the widely reported and tested form of 
-logistic regression. We recommend that any user of `myoRDNA` implements the
+logistic regression. We recommend that any user of `seqRdna` implements the
 binomial method first and move to `quasi-binomial` or `beta-binomial` once they
 suspect that the $p$-values are inflated. 
 
@@ -860,14 +860,14 @@ matrix of the regression coefficients. For overdispersed data, this generally
 increases the standard errors and reduces the apparent statistical significance 
 of treatment effects.
 
-In `myoRDNA`, this model is implemented using the `quasibinomial()` family 
+In `seqRdna`, this model is implemented using the `quasibinomial()` family 
 within R's `glm()` function.
 
 **Important:** Reliable dispersion estimation requires sufficient residual 
 degrees of freedom. Sites observed in very few samples, particularly those 
 with missing coverage, may not contain enough information to estimate the 
 dispersion parameter reliably. This problem is more obvious in the beta-binomial
-logistic covered in the next section. Currently, in `myoRDNA` when using the 
+logistic covered in the next section. Currently, in `seqRdna` when using the 
 `quasi-binomial` method there is no means of detecting how successful the 
 estimation for $\hat{\phi}$ is. 
 
@@ -903,7 +903,7 @@ The expected number of methylated reads is
 $$
 \operatorname{E}(Y_i)=n_i p_i,
 $$
-In `myoRDNA`, the beta-binomial model is fitted using the 
+In `seqRdna`, the beta-binomial model is fitted using the 
 `betabinomial(link = "logit")` family provided by `glmmTMB`.
 
 Unlike quasi-binomial regression, beta-binomial regression specifies a complete 
@@ -919,7 +919,7 @@ little variation.
 Site-level differential methylation identifies individual CpG positions that 
 exhibit differences in methylation between experimental conditions.
 
-For each genomic position, `myoRDNA` fits a separate regression model using the 
+For each genomic position, `seqRdna` fits a separate regression model using the 
 methylated and unmethylated read counts across samples.
 
 Here, we analyse the 18S region of the previously prepared mouse WGBS dataset.
@@ -1048,7 +1048,7 @@ hypothesis test.
 Site-level differential methylation involves testing multiple CpG positions, 
 increasing the probability of obtaining false-positive results.
 
-To account for multiple comparisons, `myoRDNA` supports p-value adjustment using
+To account for multiple comparisons, `seqRdna` supports p-value adjustment using
 the Benjamini–Hochberg (BH) as a default procedure. However, if the user wishes 
 to use a less or more conservative method this can be adjusted through the 
 `p_adjust_method` to `none` for no adjustment or `bonferroni` or `holm` to name
