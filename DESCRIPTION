@@ -1,5 +1,5 @@
 Package: seqRdna
-Title: Tools for Calculating for rDNA in Muscle Sequencing Data
+Title: Tools for Calculating for rDNA in Sequencing Data
 Version: 0.99.5
 Authors@R: c(
     person(
